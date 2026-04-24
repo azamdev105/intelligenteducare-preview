@@ -134,7 +134,6 @@ img, svg {
   font-weight: 600;
   font-size: 14px;
   letter-spacing: 0.04em;
-  text-transform: uppercase;
   border: none;
   cursor: pointer;
   white-space: nowrap;
@@ -265,22 +264,6 @@ img, svg {
     gap: 48px;
     align-items: start;
   }
-}
-
-/* Kicker pill */
-.kicker {
-  display: inline-flex;
-  align-items: center;
-  font-family: 'Oswald', sans-serif;
-  font-weight: 500;
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--color-primary);
-  border: 1px solid var(--color-primary);
-  border-radius: 999px;
-  padding: 4px 12px;
-  margin-bottom: 20px;
 }
 
 /* H1 */
