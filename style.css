@@ -55,8 +55,8 @@
    ============================================================ */
 
 :root {
-  --color-primary:       #0F7B3E;
-  --color-primary-hover: #0A6232;
+  --color-primary:       #F5A800;
+  --color-primary-hover: #D48F00;
   --color-ink:           #20303C;
   --color-muted:         #5A6B76;
   --color-surface:       #FFFFFF;
@@ -243,7 +243,9 @@ img, svg {
 
 #hero {
   background: var(--color-cream);
-  padding: 48px 0 56px;
+  padding: 48px 0;
+  position: relative;
+  isolation: isolate;
 }
 
 @media (min-width: 768px) {
@@ -253,17 +255,7 @@ img, svg {
 }
 
 .hero-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 40px;
-}
-
-@media (min-width: 768px) {
-  .hero-grid {
-    grid-template-columns: 60fr 40fr;
-    gap: 48px;
-    align-items: start;
-  }
+  display: block;
 }
 
 /* H1 */
@@ -295,110 +287,137 @@ img, svg {
   font-weight: 400;
   color: var(--color-muted);
   max-width: 46ch;
-  margin-bottom: 32px;
+  margin-bottom: 20px;
 }
 
 @media (min-width: 768px) {
   .hero-sub {
     font-size: 18px;
+    margin-bottom: 32px;
   }
-}
-
-/* Trust row */
-.trust-row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 4px 8px;
-  margin-top: 16px;
-  font-weight: 500;
-  font-size: 13px;
-  color: var(--color-muted);
 }
 
 .trust-dot {
   opacity: 0.45;
 }
 
+
 /* ============================================================
-   PROOF CARD (desktop only)
+   WHAT SHE TEACHES
    ============================================================ */
 
-.proof-card {
-  display: none;
+/* ============================================================
+   GOOGLE REVIEWS
+   ============================================================ */
+
+#reviews {
+  background: var(--color-surface);
+  padding: 48px 0;
 }
 
 @media (min-width: 768px) {
-  .proof-card {
-    display: block;
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: 16px;
-    padding: 24px;
-    position: sticky;
-    top: calc(72px + 24px);
+  #reviews {
+    padding: 96px 0;
   }
 }
 
-.proof-stat {
-  display: flex;
-  align-items: baseline;
-  gap: 12px;
-  padding: 16px 0;
-  border-bottom: 1px solid rgba(32, 48, 60, 0.06);
-}
-
-.proof-stat:first-child {
-  padding-top: 0;
-}
-
-.proof-stat:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
-}
-
-.stat-num {
-  font-family: 'Oswald', sans-serif;
-  font-weight: 700;
-  font-size: 40px;
-  color: var(--color-ink);
-  line-height: 1;
-}
-
-.stat-num--primary {
-  color: var(--color-primary);
-}
-
-.stat-label {
+.reviews-attribution {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-weight: 500;
   font-size: 13px;
   color: var(--color-muted);
-}
-
-/* ============================================================
-   SCROLL CUE
-   ============================================================ */
-
-.scroll-cue-wrap {
-  text-align: center;
-  margin-top: 40px;
-}
-
-.scroll-cue {
-  font-weight: 500;
-  font-size: 14px;
-  color: var(--color-primary);
+  margin-bottom: 28px;
   transition: opacity 0.2s ease;
 }
 
-.scroll-cue:hover {
-  opacity: 0.7;
+.reviews-attribution:hover {
+  opacity: 0.75;
 }
 
-.scroll-cue:focus-visible {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 3px;
-  border-radius: 2px;
+.google-g {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.attr-stars {
+  color: var(--color-primary);
+  letter-spacing: 1px;
+}
+
+.attr-divider {
+  opacity: 0.4;
+}
+
+/* Mobile: horizontal scroll carousel */
+.reviews-track {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-bottom: 8px;
+}
+
+.reviews-track::-webkit-scrollbar {
+  display: none;
+}
+
+/* Desktop: 3-column grid, no scroll */
+@media (min-width: 768px) {
+  .reviews-track {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    overflow: visible;
+    padding-bottom: 0;
+    scroll-snap-type: none;
+  }
+}
+
+.review-card {
+  flex: 0 0 85%;
+  scroll-snap-align: start;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+@media (min-width: 768px) {
+  .review-card {
+    flex: none;
+    scroll-snap-align: none;
+  }
+}
+
+.review-stars {
+  color: var(--color-primary);
+  font-size: 15px;
+  letter-spacing: 2px;
+  line-height: 1;
+}
+
+.review-text {
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--color-ink);
+  line-height: 1.6;
+  flex: 1;
+}
+
+.review-name {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--color-ink);
 }
 
 /* ============================================================
@@ -407,7 +426,7 @@ img, svg {
 
 #subjects {
   background: var(--color-surface);
-  padding: 56px 0;
+  padding: 48px 0;
 }
 
 @media (min-width: 768px) {
@@ -423,8 +442,8 @@ img, svg {
   color: var(--color-ink);
   line-height: 1.15;
   max-width: 18ch;
-  margin-top: 16px;
-  margin-bottom: 40px;
+  margin-top: 0;
+  margin-bottom: 32px;
 }
 
 @media (min-width: 768px) {
@@ -459,6 +478,7 @@ img, svg {
   border: 1px solid var(--color-border);
   border-radius: 16px;
   padding: 24px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
 }
 
 @media (min-width: 768px) {
@@ -474,7 +494,7 @@ img, svg {
   font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--color-muted);
+  color: var(--color-ink);
 }
 
 .card-title {
@@ -531,7 +551,9 @@ img, svg {
 
 #why {
   background: var(--color-cream);
-  padding: 56px 0;
+  padding: 48px 0;
+  position: relative;
+  isolation: isolate;
 }
 
 @media (min-width: 768px) {
@@ -547,8 +569,8 @@ img, svg {
   color: var(--color-ink);
   line-height: 1.15;
   max-width: 16ch;
-  margin-top: 16px;
-  margin-bottom: 40px;
+  margin-top: 0;
+  margin-bottom: 32px;
 }
 
 @media (min-width: 768px) {
@@ -583,6 +605,7 @@ img, svg {
   border: 1px solid var(--color-border);
   border-radius: 16px;
   padding: 28px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
 }
 
 @media (min-width: 768px) {
@@ -591,13 +614,11 @@ img, svg {
   }
 }
 
-/* Desktop hover — faster transform transition, lift on hover */
+/* Desktop hover */
 @media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
-  .why-tile.fade-in-up {
-    transition: opacity 0.4s ease-out, transform 0.2s ease-out;
-  }
-  .why-tile.is-visible:hover {
+  .why-tile:hover {
     transform: translateY(-2px);
+    transition: transform 0.2s ease-out;
   }
 }
 
@@ -664,18 +685,21 @@ img, svg {
   margin-top: 8px;
 }
 
-/* Stagger delays — placed after desktop override so transition-delay wins */
-.why-tile--delay-1.fade-in-up {
-  transition-delay: 0.08s;
-}
+/* ============================================================
+   GRAIN TEXTURE — cream/beige sections only
+   ============================================================ */
 
-.why-tile--delay-2.fade-in-up {
-  transition-delay: 0.16s;
-}
-
-/* TESTIMONIAL stub */
-#testimonial {
-  min-height: 80px;
+#hero::before,
+#why::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='200' height='200' filter='url(%23n)'/></svg>");
+  background-repeat: repeat;
+  background-size: 200px 200px;
 }
 
 /* ============================================================
