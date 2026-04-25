@@ -181,7 +181,7 @@ img, svg {
   justify-content: center;
 }
 
-@media (min-width: 360px) {
+@media (min-width: 400px) {
   .btn-wa--hero {
     width: auto;
     justify-content: flex-start;
@@ -671,21 +671,6 @@ img, svg {
 
 .why-tile--delay-2.fade-in-up {
   transition-delay: 0.16s;
-}
-
-/* Closing strip */
-.why-closing {
-  text-align: center;
-  font-weight: 500;
-  font-size: 14px;
-  color: var(--color-ink);
-  margin-top: 32px;
-}
-
-@media (min-width: 768px) {
-  .why-closing {
-    margin-top: 48px;
-  }
 }
 
 /* TESTIMONIAL stub */
